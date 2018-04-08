@@ -44,9 +44,5 @@ RUN cd /tmp  && unzip -d /opt/gradle gradle-4.0-bin.zip
 RUN ls /opt/gradle/gradle-4.0
 
 
-#install plik
-RUN cd /usr/bin && wget https://fh.lemonize.de/clients/linux-amd64/plik
-RUN chmod +x /usr/bin/plik
-
 USER jenkins
 WORKDIR /home/jenkins
