@@ -4,17 +4,13 @@ USER root
 
 RUN apt-get update && apt-get install -y nano  libxml-xpath-perl openssh-server sudo ruby-dev rubygems rsync zip  libc6-i386 lib32stdc++6 lib32gcc1 lib32ncurses5 lib32z1 gcc build-essential make   libcairo2-dev libjpeg62-turbo-dev libpango1.0-dev libgif-dev build-essential g++ imagemagick graphicsmagick  && rm -rf /var/lib/apt/lists/*
 
-RUN useradd -ms /bin/bash jenkins
-USER jenkins
-WORKDIR /home/jenkins
-
 # env for scripts
 env PATH /var/jenkins_home/scripts:$PATH
 
-# install node stuff
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
-RUN apt-get install -y nodejs
+# install node 
+RUN apt-get update  && curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
 
+# install node stuff
 RUN npm install -g bower
 RUN npm install -g grunt-cli
 RUN npm install -g n
@@ -43,6 +39,7 @@ RUN cd /tmp && wget https://services.gradle.org/distributions/gradle-4.0-bin.zip
 RUN cd /tmp  && unzip -d /opt/gradle gradle-4.0-bin.zip
 RUN ls /opt/gradle/gradle-4.0
 
-
+RUN useradd -ms /bin/bash jenkins
 USER jenkins
 WORKDIR /home/jenkins
+
