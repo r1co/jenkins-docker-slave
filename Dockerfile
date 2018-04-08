@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM openjdk:8-jdk
 
 RUN apt-get update && apt-get install -y openssh-server   && rm -rf /var/lib/apt/lists/*
 
