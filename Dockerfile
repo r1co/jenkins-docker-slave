@@ -12,6 +12,7 @@ RUN apt-get update  && curl -sL https://deb.nodesource.com/setup_6.x | bash - &&
 
 # install node stuff
 RUN npm install -g bower
+RUN npm install -g caniuse-cmd
 RUN npm install -g grunt-cli
 RUN npm install -g n
 RUN npm install -g yarn
@@ -29,9 +30,9 @@ RUN echo "jenkins ALL = (root) NOPASSWD: /usr/bin/apt" >> /etc/sudoers
 
 # install mvn 3.5.0
 WORKDIR /opt
-RUN wget http://apache.mirror.iphh.net//maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.zip
-RUN unzip apache-maven-3.5.2-bin.zip
-RUN ln -s /opt/apache-maven-3.5.2/bin/mvn /usr/bin/
+RUN wget http://apache.mirror.iphh.net//maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.zip
+RUN unzip apache-maven-3.5.4-bin.zip
+RUN ln -s /opt/apache-maven-3.5.4/bin/mvn /usr/bin/
 
 # install gradle
 RUN mkdir /opt/gradle
@@ -40,6 +41,10 @@ RUN cd /tmp  && unzip -d /opt/gradle gradle-4.0-bin.zip
 RUN ls /opt/gradle/gradle-4.0
 
 RUN useradd -ms /bin/bash jenkins
+
+RUN groupadd -g 999 docker
+RUN usermod -a -G docker jenkins
+
 USER jenkins
 WORKDIR /home/jenkins
 
