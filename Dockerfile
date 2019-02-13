@@ -40,11 +40,11 @@ RUN cd /tmp && wget https://services.gradle.org/distributions/gradle-4.0-bin.zip
 RUN cd /tmp  && unzip -d /opt/gradle gradle-4.0-bin.zip
 RUN ls /opt/gradle/gradle-4.0
 
-RUN useradd -ms /bin/bash jenkins
+RUN useradd -ms /bin/bash -d /var/jenkins_home  jenkins
 
 RUN groupadd -g 999 docker
 RUN usermod -a -G docker jenkins
 
 USER jenkins
-WORKDIR /home/jenkins
+WORKDIR /var/jenkins_home
 
