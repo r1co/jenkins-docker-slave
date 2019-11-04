@@ -7,8 +7,8 @@ RUN apt-get update && apt-get install -y nano  libxml-xpath-perl openssh-server 
 # env for scripts
 env PATH /var/jenkins_home/scripts:$PATH
 
-# install node 
-RUN apt-get update  && curl -sL https://deb.nodesource.com/setup_6.x | bash - && apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
+# install node
+RUN apt-get update  && curl -sL https://deb.nodesource.com/setup_12.x | bash - && apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
 
 # install node stuff
 RUN npm install -g bower
@@ -47,4 +47,3 @@ RUN usermod -a -G docker jenkins
 
 USER jenkins
 WORKDIR /var/jenkins_home
-
