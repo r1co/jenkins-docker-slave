@@ -9,3 +9,7 @@ function buildImage() {
 buildImage 'node-8'
 buildImage 'node-10'
 buildImage 'node-11'
+buildImage 'node-12'
+
+git checkout develop
+echo "done!"
