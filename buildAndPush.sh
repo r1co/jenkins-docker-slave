@@ -2,7 +2,7 @@
 
 function buildImage() {
   git checkout $1
-  docker build -t r1co/jenkins-docker-slave:$1
+  docker build -t r1co/jenkins-docker-slave:$1 .
   docker push r1co/jenkins-docker-slave:$1
 }
 
